@@ -1,0 +1,31 @@
+{
+  "name": "skriv",
+  "version": "0.1.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "start-dev": "NODE_ENV=development electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "some.id",
+    "mac": {
+      "category": "public.app-category.productivity"
+    }
+  },
+  "keywords": [],
+  "author": "Filip Johansson",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^8.2.5",
+    "electron-builder": "^22.6.0"
+  },
+  "dependencies": {
+    "@codewell/create-directory-if-it-doesnt-exist": "0.0.1",
+    "@codewell/is-defined": "^1.0.2",
+    "showdown": "^1.9.1"
+  }
+}

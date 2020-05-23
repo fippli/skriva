@@ -1,0 +1,95 @@
+html {
+  -webkit-app-region: drag;
+}
+
+body {
+  width: 210mm;
+  margin: 0 auto;
+  font-family: "Montserrat", sans-serif;
+  --spacing-small: 5mm;
+  --title-font: "Libre Baskerville", "Playfair Display", serif;
+  --text-font: "Montserrat", sans-serif;
+  --code-font: "Fira Code", monospace;
+  width: 210mm;
+  -webkit-app-region: no-drag;
+}
+
+main {
+  max-width: 13cm;
+  margin: 2cm auto;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--title-font);
+  margin: 0;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h1,
+h2 {
+  font-weight: bold;
+  margin: 15mm 0 7mm 0;
+}
+
+p,
+a,
+li {
+  font-family: var(--text-font);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 7mm;
+}
+
+pre {
+  padding: 5mm 0;
+}
+
+pre code {
+  display: block;
+  padding: 5mm;
+}
+
+code {
+  font-family: var(--code-font);
+  font-size: 14px;
+  line-height: 5.5mm;
+  background: #f0f0f0;
+  border-radius: 5px;
+}
+
+li {
+  margin: 5mm 0;
+}
+
+@page {
+  size: A4;
+  margin: 0;
+}
+@media print {
+  html,
+  body {
+    width: 210mm;
+    height: 297mm;
+  }
+}
+
+table {
+  width: 100%;
+  padding: var(--spacing-small);
+  font-family: var(--code-font);
+}
+
+tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+th {
+  text-transform: uppercase;
+}
