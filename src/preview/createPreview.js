@@ -26,6 +26,8 @@ const createPreview = (html) => {
     <style>
     ${documentStyle()}
     </style>
+
+    <header></header>
     <main>
     ${html}
     </main>

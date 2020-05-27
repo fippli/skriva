@@ -10,8 +10,29 @@ body {
   --title-font: "Libre Baskerville", "Playfair Display", serif;
   --text-font: "Montserrat", sans-serif;
   --code-font: "Fira Code", monospace;
+  --background-color: #ffffff;
   width: 210mm;
   -webkit-app-region: no-drag;
+}
+
+body::-webkit-scrollbar,
+main::-webkit-scrollbar {
+  display: none;
+}
+
+/* Area for dragging the window */
+header {
+  height: 23px;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  -webkit-app-region: drag;
+  background-color: var(--background-color);
+  display: flex;
+  align-items: center;
 }
 
 main {
@@ -35,7 +56,16 @@ h1 {
 h1,
 h2 {
   font-weight: bold;
-  margin: 15mm 0 7mm 0;
+  margin: 7mm 0 5mm 0;
+}
+
+h3 {
+  font-family: var(--text-font);
+  font-weight: 900;
+  font-size: 16px;
+  margin-bottom: 1mm;
+  margin-top: 4mm;
+  letter-spacing: 1px;
 }
 
 p,
@@ -65,7 +95,7 @@ code {
 }
 
 li {
-  margin: 5mm 0;
+  margin: 1mm 0;
 }
 
 @page {

@@ -19,7 +19,7 @@ body {
 
 /* Area for dragging the window */
 header {
-  height: 25px;
+  height: 23px;
   width: 100%;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   position: absolute;

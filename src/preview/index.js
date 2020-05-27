@@ -7,14 +7,37 @@ const baseDir = require("../config");
 const showdown = require("showdown");
 showdown.setOption("tables", true);
 const converter = new showdown.Converter();
+const { getFileContent } = require("../file/fileContent");
 
 const PREVIEW_PATH = path.resolve(baseDir(), "preview.html");
 fs.writeFileSync(PREVIEW_PATH, "");
 
-let refreshed = false;
+let contentCache = "";
+
+const writePreviewFile = (_, newFileContent) => {
+  const html = converter.makeHtml(newFileContent);
+  const doc = createPreview(html);
+  fs.writeFileSync(PREVIEW_PATH, doc);
+};
+
+const refresh = (previewWindow) => {
+  if (previewWindow) {
+    const fileContent = getFileContent();
+    const refreshed = fileContent === contentCache;
+
+    setTimeout(() => {
+      if (refreshed === false) {
+        previewWindow.loadURL(`file://${PREVIEW_PATH}`);
+        contentCache = fileContent;
+      }
+      refresh(previewWindow);
+    }, 500);
+  }
+};
 
 const preview = () => {
-  previewWindow = new BrowserWindow({
+  console.log("Previewing");
+  const previewWindow = new BrowserWindow({
     width: 920,
     height: 800,
     titleBarStyle: "hidden",
@@ -24,29 +47,13 @@ const preview = () => {
     previewWindow = null;
   });
 
-  previewWindow.webContents.openDevTools();
-
-  const refresh = () => {
-    if (previewWindow) {
-      setTimeout(() => {
-        if (refreshed === false) {
-          previewWindow.loadURL(`file://${PREVIEW_PATH}`);
-          refreshed = true;
-        }
-        refresh();
-      }, 1000);
-    }
-  };
-
-  refresh();
+  refresh(previewWindow);
 };
 
 // Catch file changes
-ipcMain.on("typing", (event, newFileContent) => {
-  const html = converter.makeHtml(newFileContent);
-  const doc = createPreview(html);
-  fs.writeFileSync(PREVIEW_PATH, doc);
-  refreshed = false;
-});
+ipcMain.on("typing", writePreviewFile);
 
-module.exports = { preview };
+module.exports = {
+  preview,
+  writePreviewFile,
+};

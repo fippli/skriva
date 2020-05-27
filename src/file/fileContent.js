@@ -1,7 +1,7 @@
 // Contains the state of the edited file
 let fileContent = "";
 
-const setFileContent = (nextFileContent) => {
+const setFileContent = (_, nextFileContent) => {
   fileContent = nextFileContent;
 };
 

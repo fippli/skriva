@@ -4,15 +4,16 @@ const isDefined = require("@codewell/is-defined");
 const showdown = require("showdown");
 const { setFileContent, getFileContent } = require("./fileContent");
 const { setFilePath, getFilePath } = require("./filePath");
+const { writePreviewFile } = require("../preview");
 
 // Showdown config
 showdown.setOption("tables", true);
+showdown.setOption("strikethrough", true);
+showdown.setOption("tasklists", true);
 
 // Update content on typing
 // Catch file changes
-ipcMain.on("typing", (event, newFileContent) => {
-  setFileContent(newFileContent);
-});
+ipcMain.on("typing", setFileContent);
 
 const sendToClient = (message, data) => {
   const [window] = BrowserWindow.getAllWindows();
@@ -55,10 +56,9 @@ const open = () => {
     properties: ["openFile"],
   });
   const fileContent = fs.readFileSync(filePath).toString();
-
   setFilePath(filePath);
-  setFileContent(fileContent);
-
+  setFileContent(null, fileContent);
+  writePreviewFile(null, fileContent);
   sendToClient("file-opened", { fileContent, filePath });
 };
 
