@@ -1,5 +1,5 @@
 {
-  "name": "skriv",
+  "name": "skriva",
   "version": "0.1.0",
   "description": "",
   "main": "main.js",
@@ -20,12 +20,14 @@
   "author": "Filip Johansson",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^8.2.5",
-    "electron-builder": "^22.6.0"
+    "electron": "^8.3.0",
+    "electron-builder": "^22.7.0"
   },
   "dependencies": {
+    "@codewell/chain": "^1.0.3",
     "@codewell/create-directory-if-it-doesnt-exist": "0.0.1",
     "@codewell/is-defined": "^1.0.2",
+    "@codewell/last": "^1.0.0",
     "showdown": "^1.9.1"
   }
 }

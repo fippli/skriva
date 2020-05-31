@@ -1,13 +1,13 @@
 // Define the working directory of
 // for storing files
-const { app } = require("electron");
-const homedir = require("os").homedir();
 const createDirIfItDoesntExist = require("@codewell/create-directory-if-it-doesnt-exist");
+const { readState } = require("../state");
 
-const baseDir = () => {
-  const path = `${homedir}/.${app.name}`;
-  createDirIfItDoesntExist(path);
-  return path;
+const config = () => {
+  // Configure directory for storing
+  // program files
+  const { baseDir } = readState();
+  createDirIfItDoesntExist(baseDir);
 };
 
-module.exports = baseDir;
+module.exports = config;

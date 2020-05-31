@@ -1,18 +1,4 @@
-const fs = require("fs");
-const { dialog } = require("electron");
-let filePath = `${__dirname}/styles.css`;
-
-const loadStyleSheet = () => {
-  const [newPath] = dialog.showOpenDialogSync({
-    properties: ["openFile"],
-  });
-
-  filePath = newPath;
-};
-
-const documentStyle = () => fs.readFileSync(filePath).toString();
-
-const createPreview = (html) => {
+const createPreview = (style) => (html) => {
   return `
   <!DOCTYPE HTML>
   <html>
@@ -24,7 +10,7 @@ const createPreview = (html) => {
   </head>
   <body>
     <style>
-    ${documentStyle()}
+    ${style}
     </style>
 
     <header></header>
@@ -44,7 +30,4 @@ const createPreview = (html) => {
   `;
 };
 
-module.exports = {
-  createPreview,
-  loadStyleSheet,
-};
+module.exports = createPreview;

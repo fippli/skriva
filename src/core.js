@@ -1,4 +1,5 @@
-const homedir = require("os").homedir();
+const { ipcMain } = require("electron");
+const fileEditEvent = require("./events/fileEditEvent");
 
-// Initialize a git repository
-const gitRepo = "git@github.com:fippli/.skriv.git";
+// Register events
+ipcMain.on("typing", fileEditEvent);

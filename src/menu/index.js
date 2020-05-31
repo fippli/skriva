@@ -1,7 +1,7 @@
 const { Menu } = require("electron");
 const { save, saveAs, open } = require("../file");
-const { preview } = require("../preview");
-const { loadStyleSheet } = require("../preview/createPreview");
+const preview = require("../preview");
+const loadStyleSheet = require("../preview/loadStyleSheet");
 const exportToPdf = require("../file/exportToPDF");
 
 const template = (app, isMac) => [
