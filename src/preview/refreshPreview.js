@@ -1,13 +1,15 @@
-const { readState, dispatch } = require("../state");
+const { readState } = require("../state");
+
+let fileContentReloadCache = "";
 
 const refreshPreview = (previewWindow) => {
-  const { fileContentReloadCache, fileContent, previewFilePath } = readState();
+  const { fileContent, previewFilePath } = readState();
 
   if (previewWindow) {
     setTimeout(() => {
       if (fileContent !== fileContentReloadCache) {
         previewWindow.loadURL(`file://${previewFilePath}`);
-        dispatch({ fileContentReloadCache: fileContent });
+        fileContentReloadCache = fileContent;
       }
       refreshPreview(previewWindow);
     }, 500);
