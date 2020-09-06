@@ -22,22 +22,25 @@ const initialState = {
 
 // !
 // Side effects when the state updates
-const effects = (nextState) => {
-  sendToClient(nextState);
+const effects = (nextState, updateClient) => {
+  if (updateClient) {
+    sendToClient(nextState);
+  }
+
   writePreviewFile(nextState);
 };
 
 // ! Mutable state
 let state = initialState;
 
-const dispatch = (update) => {
+const dispatch = (update, updateClient = false) => {
   const nextState = reducer(update)(state);
   if (process.env.NODE_ENV === "development") {
     console.log("Next state:", nextState);
   }
 
   state = nextState;
-  effects(nextState);
+  effects(nextState, updateClient);
 };
 
 const readState = () => ({ ...state });

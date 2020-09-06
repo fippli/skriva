@@ -8,10 +8,17 @@ const refreshPreview = (previewWindow) => {
   if (previewWindow) {
     setTimeout(() => {
       if (fileContent !== fileContentReloadCache) {
-        previewWindow.loadURL(`file://${previewFilePath}`);
-        fileContentReloadCache = fileContent;
+        try {
+          previewWindow.loadURL(`file://${previewFilePath}`);
+          fileContentReloadCache = fileContent;
+          refreshPreview(previewWindow);
+        } catch (error) {
+          // Window is most likely closed.
+          // The recursion stops here.
+        }
+      } else {
+        refreshPreview(previewWindow);
       }
-      refreshPreview(previewWindow);
     }, 500);
   }
 };

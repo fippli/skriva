@@ -1,17 +1,8 @@
-const { BrowserWindow } = require("electron");
 const refreshPreview = require("./refreshPreview");
+const createNewWindow = require("../utils/createNewWindow");
 
 const preview = () => {
-  const previewWindow = new BrowserWindow({
-    width: 920,
-    height: 800,
-    titleBarStyle: "hidden",
-  });
-
-  previewWindow.on("closed", () => {
-    previewWindow = null;
-  });
-
+  let previewWindow = createNewWindow();
   refreshPreview(previewWindow);
 };
 

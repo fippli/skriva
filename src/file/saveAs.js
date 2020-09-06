@@ -6,13 +6,14 @@ const writeFile = require("../utils/writeFile");
 // Save filecontent and select a
 // file path
 const saveAs = () => {
-  const filePath = dialog.showSaveDialogSync({
+  const dialogData = dialog.showSaveDialogSync({
     properties: ["createDirectory"],
   });
 
-  if (!isDefined(filePath)) {
+  if (!isDefined(dialogData)) {
     dispatch({ filePath: null });
   } else {
+    const [filePath] = dialogData;
     dispatch({ filePath });
     const { fileContent } = readState();
     writeFile(filePath)(fileContent);
