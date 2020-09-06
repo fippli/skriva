@@ -62,7 +62,7 @@ $$\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$$
 
 outputs
 
-![](rendered.png)
+![](./rendered.png)
 
 ## Contributions are welcome
 Put an issue or open a pr
