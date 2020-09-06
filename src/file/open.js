@@ -7,17 +7,21 @@ const getFileContents = (filePath) => fs.readFileSync(filePath).toString();
 
 // Open a file
 const open = () => {
-  const [filePath] = dialog.showOpenDialogSync({
+  const dialogData = dialog.showOpenDialogSync({
     properties: ["openFile"],
   });
 
-  if (isDefined(filePath)) {
+  if (isDefined(dialogData)) {
+    const [filePath] = dialogData;
     const fileContent = getFileContents(filePath);
 
-    dispatch({
-      filePath,
-      fileContent,
-    });
+    dispatch(
+      {
+        filePath,
+        fileContent,
+      },
+      true,
+    );
   }
 };
 
