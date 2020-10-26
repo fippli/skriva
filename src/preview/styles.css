@@ -22,9 +22,8 @@ main::-webkit-scrollbar {
 
 /* Area for dragging the window */
 header {
-  height: 23px;
+  height: 22px;
   width: 100%;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   position: fixed;
   top: 0;
   left: 0;
@@ -33,6 +32,14 @@ header {
   background-color: var(--background-color);
   display: flex;
   align-items: center;
+}
+
+header:hover {
+  background-color: #f1f1f2;
+}
+
+header:active {
+  background-color: #e9e9ea;
 }
 
 main {
