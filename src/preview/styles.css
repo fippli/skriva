@@ -6,10 +6,13 @@ body {
   width: 210mm;
   margin: 0 auto;
   font-family: "Montserrat", sans-serif;
+  --font-sans-serif: "Montserrat", sans-serif;
+  --font-serif: "Libre Baskerville", "Playfair Display", serif;
+  --font-monospace: "Fira Code", monospace;
   --spacing-small: 5mm;
-  --title-font: "Libre Baskerville", "Playfair Display", serif;
-  --text-font: "Montserrat", sans-serif;
-  --code-font: "Fira Code", monospace;
+  --title-font: var(--font-sans-serif);
+  --text-font: var(--font-serif);
+  --code-font: var(--font-monospace);
   --background-color: #ffffff;
   width: 210mm;
   -webkit-app-region: no-drag;
@@ -22,7 +25,7 @@ main::-webkit-scrollbar {
 
 /* Area for dragging the window */
 header {
-  height: 22px;
+  height: 27px;
   width: 100%;
   position: fixed;
   top: 0;
@@ -62,12 +65,11 @@ h1 {
 
 h1,
 h2 {
-  font-weight: bold;
+  font-weight: 900;
   margin: 7mm 0 5mm 0;
 }
 
 h3 {
-  font-family: var(--text-font);
   font-weight: 900;
   font-size: 16px;
   margin-bottom: 1mm;
